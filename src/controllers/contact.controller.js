@@ -10,9 +10,10 @@ exports.create = (req, res) => {
   
     // Create a Customer
     const contact = new Contact({
-      email: req.body.firstname,
-      name: req.body.lastname,
-      message: req.body.message
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      message: req.body.message,
+      email: req.body.email
     });
   
     // Save Customer in the database

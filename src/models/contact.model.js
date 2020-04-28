@@ -5,6 +5,7 @@ const Contact = function(contact) {
     this.firstname = contact.firstname;
     this.lastname = contact.lastname;
     this.message = contact.message;
+    this.email = contact.email;
 }
 
 Contact.create = (newContact, result) => {
