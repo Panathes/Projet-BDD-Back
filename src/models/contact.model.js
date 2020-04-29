@@ -9,8 +9,11 @@ const Contact = function(contact) {
 }
 
 Contact.create = (newContact, result) => {
-  sql.run(`INSERT INTO contact(contact_id,firstname,lastname,message,email) VALUES(?,?,?,?,?)`, (null, newContact.firstname, newContact.lastname, newContact.message, newContact.email), function(err) {
+  let randomid = Math.random() * (1 - 1000000) + 1; 
+
+  sql.run(`INSERT INTO contact VALUES(?,?,?,?,?)`, (null, newContact.firstname, newContact.lastname, newContact.message, newContact.email), function(err, row) {
     console.log(newContact)
+    console.log(row)
     if (err) {
       return console.log(err.message);
     }
