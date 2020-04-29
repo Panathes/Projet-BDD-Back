@@ -9,16 +9,22 @@ const Contact = function(contact) {
 }
 
 Contact.create = (newContact, result) => {
-    sql.query("INSERT INTO customers SET ?", newContact, (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      }
-  
-      console.log("created customer: ", { id: res.insertId, ...newContact });
-      result(null, { id: res.insertId, ...newContact });
-    });
+  sql.run(`INSERT INTO contact(contact_id,firstname,lastname,message,email) VALUES(?,?,?,?,?)`, (null, newContact.firstname, newContact.lastname, newContact.message, newContact.email), function(err) {
+    console.log(newContact)
+    if (err) {
+      return console.log(err.message);
+    }
+    console.log(result);
+  });
+    // sql.run("INSERT INTO customers SET ?", newContact, (err, res) => {
+    //   if (err) {
+    //     console.log("error: ", err);
+    //     result(err, null);
+    //     return;
+    //   }
+    //   console.log("created customer: ", { id: res.insertId, ...newContact });
+    //   result(null, { id: res.insertId, ...newContact });
+    // });
   };
 
 module.exports = Contact;  
