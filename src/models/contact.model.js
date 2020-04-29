@@ -1,7 +1,7 @@
 const sql = require("../db/db.js")
 
 const Contact = function(contact) {
-    this.contact_id = contact.info_id;
+    this.contact_id = contact.contact_id;
     this.firstname = contact.firstname;
     this.lastname = contact.lastname;
     this.message = contact.message;
@@ -9,9 +9,8 @@ const Contact = function(contact) {
 }
 
 Contact.create = (newContact, result) => {
-  let randomid = Math.random() * (1 - 1000000) + 1; 
 
-  sql.run(`INSERT INTO contact VALUES(?,?,?,?,?)`, (null, newContact.firstname, newContact.lastname, newContact.message, newContact.email), function(err, row) {
+  sql.run(`INSERT INTO contact(firstname, lastname, message, email) VALUES(?,?,?,?)`, (newContact.firstname, newContact.lastname, newContact.message, newContact.email), function(err, row) {
     console.log(newContact)
     console.log(row)
     if (err) {
